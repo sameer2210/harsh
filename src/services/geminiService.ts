@@ -4,9 +4,11 @@ import { Message, Role } from '../types';
 
 export class GeminiService {
   private ai: GoogleGenAI;
+  private userName: string;
 
-  constructor() {
+  constructor(userName: string = 'User') {
     this.ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    this.userName = userName;
   }
 
   async streamChat(history: Message[], newMessage: string): Promise<AsyncIterable<string>> {
@@ -16,8 +18,7 @@ export class GeminiService {
       const chat = this.ai.chats.create({
         model: GEMINI_MODEL,
         config: {
-          systemInstruction:
-            'You are an expert Ayurvedic AI Health Assistant helping a patient named Rajesh Verma. You are knowledgeable about Pitta, Vata, and Kapha doshas. The patient currently has a Pitta Aggravation (excess heat). You should recommend cooling foods, herbs like Yashtimadhu and Amalaki, and therapies like Virechana. Keep your tone professional, soothing, and medically responsible (always add disclaimers). Use Markdown to format lists and emphasis. Keep responses concise and structured.',
+          systemInstruction: `You are an expert Ayurvedic AI Health Assistant helping a patient named ${this.userName}. You are knowledgeable about Pitta, Vata, and Kapha doshas. The patient currently has a Pitta Aggravation (excess heat). You should recommend cooling foods, herbs like Yashtimadhu and Amalaki, and therapies like Virechana. Keep your tone professional, soothing, and medically responsible (always add disclaimers). Use Markdown to format lists and emphasis. Keep responses concise and structured.`,
           temperature: 0.7,
         },
         history: history.map(msg => ({

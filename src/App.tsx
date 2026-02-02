@@ -33,7 +33,7 @@ const App: React.FC = () => {
   useEffect(() => {
     localStorage.setItem('nebula_auth', JSON.stringify(auth));
     if (auth.isAuthenticated) {
-      setGemini(new GeminiService());
+      setGemini(new GeminiService(auth.user?.name || 'User'));
     }
   }, [auth]);
 
@@ -244,7 +244,7 @@ const App: React.FC = () => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-ayur-bg font-sans">
-      <Sidebar onLogout={handleLogout} isOpen={isSidebarOpen} userEmail={auth.user?.name} />
+      <Sidebar onLogout={handleLogout} isOpen={isSidebarOpen} userName={auth.user?.name} />
 
       <div className="flex-1 flex flex-col min-w-0 relative bg-ayur-bg">
         {/* Overlay for mobile sidebar */}
@@ -261,6 +261,7 @@ const App: React.FC = () => {
             onSendMessage={handleSendMessage}
             isTyping={chatState.isTyping}
             onToggleSidebar={() => setIsSidebarOpen(true)}
+            userName={auth.user?.name}
           />
         ) : (
           <div className="flex-1 flex items-center justify-center">
