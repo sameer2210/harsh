@@ -4,10 +4,16 @@ AiVeda — Ayurvedic AI Chat Assistant
 AiVeda is a modern AI-powered chat application that responds like an Ayurvedic doctor (Vaidya).
 It blends classical Ayurvedic knowledge with Google Gemini AI to provide natural, context-aware wellness guidance through a clean, minimal chat interface.
 
+## 🎥 Project Demo
+
+[▶ Demo](/public/chatscreen.png)
+
+(https://aiveda.netlify.app/)
+
+[▶ Watch Demo](/public/aiveda.mp4)
 
 [![React](https://img.shields.io/badge/Frontend-React%20%2B%20Vite-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![Gemini](https://img.shields.io/badge/AI-Google%20Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
-
 
 The project focuses on:
 
